@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ContactService {
+    @Autowired
     private final ContactRepository contactRepository;
 
     public ContactService(ContactRepository contactRepository) {
@@ -28,19 +30,21 @@ public class ContactService {
         return contactRepository.findById(contactDetailsId);
     }
 
-    public void addContact(ContactDetails contactDetails) {
+    public ContactDetails addContact(ContactDetails contactDetails) {
         Optional<ContactDetails> contactOptional = contactRepository.findByEmail(contactDetails.getEmail());
         if (contactOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");
         } else {
-            contactRepository.save(contactDetails);
+            return contactRepository.save(contactDetails);
         }
     }
 
     @SuppressWarnings("null")
     @Transactional
-    public void addContacts(List<ContactDetails> contactDetails) {
-        contactRepository.saveAll(contactDetails);
+    public List<ContactDetails> addContacts(List<ContactDetails> contactDetails) {
+
+        return contactRepository.saveAll(contactDetails);
+
     }
 
     @SuppressWarnings("null")
@@ -53,7 +57,6 @@ public class ContactService {
         contactRepository.deleteById(contactDetailsId);
     }
 
-   
     @Transactional
     public void updateContact(Long contactDetailsId, String name, String email) {
         ContactDetails contact = contactRepository.findById(contactDetailsId)

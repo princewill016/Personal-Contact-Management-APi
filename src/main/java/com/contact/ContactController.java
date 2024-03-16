@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping(path = "api/v1/contact")
+@RequestMapping()
 public class ContactController {
     @Autowired
     private final ContactService contactService;
@@ -33,12 +33,12 @@ public class ContactController {
         return contactService.getContactDetails();
     }
 
-    @PostMapping(path = "api/v1/register_contact")
-    public void addContact(@RequestBody ContactDetails contactDetail) {
-        contactService.addContact(contactDetail);
+    @PostMapping("/contactAdd")
+    public ContactDetails addContact(@RequestBody ContactDetails contactDetail) {
+        return contactService.addContact(contactDetail);
     }
 
-    @PostMapping(path = "api/v1/register_contacts")
+    @PostMapping("/contactAdds")
     public List<ContactDetails> addContacts(@RequestBody List<ContactDetails> contactDetails) {
         contactService.addContacts(contactDetails);
         return contactDetails;
