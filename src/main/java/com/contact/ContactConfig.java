@@ -1,6 +1,6 @@
 package com.contact;
 
-import java.util.*;
+import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -13,28 +13,26 @@ public class ContactConfig {
         @Bean
         CommandLineRunner commandLineRunner(ContactRepository contactRepository) {
                 return args -> {
-                        ContactDetails Peter = new ContactDetails(
-                                        1L,
+                        ContactDetails maurizia = new ContactDetails(
+                                     
                                         "Maurizia Ingry",
-                                        +486797233458L,
+                                        486797233458L,
                                         "mingry0@paypal.com",
                                         "32528 Pankratz Plaza");
                         ContactDetails david = new ContactDetails(
-                                        1L,
-                                        "david peter",
-                                        +111_1111_1111L,
+                                      
+                                        "David Peter",
+                                        1111111111L,
                                         "mdbjwwkdkekwjw0@paypal.com",
                                         "32528 Pankratz ghwggw");
                         ContactDetails gift = new ContactDetails(
-                                        1L,
-                                        "Gift peter",
-                                        +412211458L,
+                                     
+                                        "Gift Peter",
+                                        412211458L,
                                         "gift2Y@YAHOO.COM",
-                                        "waec estate");
-                        contactRepository.saveAll(
-                                        List.of(Peter, david, gift));
+                                        "Waec Estate");
 
+                        contactRepository.saveAll(List.of(maurizia, david, gift));
                 };
-
         }
 }

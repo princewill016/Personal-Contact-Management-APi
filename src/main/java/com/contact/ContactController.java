@@ -46,7 +46,7 @@ public class ContactController {
 
     @DeleteMapping(path = "{ContactDetailsId}")
     public void deleteStudent(@PathVariable("ContactDetailsId") Long ContactDetailsId) {
-        contactService.deleteStudent(ContactDetailsId);
+        contactService.deleteContact(ContactDetailsId);
     }
 
     @PutMapping("{ContactDetailsId}")
