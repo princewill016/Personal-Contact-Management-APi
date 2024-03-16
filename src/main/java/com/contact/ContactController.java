@@ -28,9 +28,10 @@ public class ContactController {
         return contactService.getContactDetails();
     }
 
-    @GetMapping(path = "api/v1/{ContactDetailsId}")
-    public List<ContactDetails> getContactDetail() {
-        return contactService.getContactDetails();
+    @GetMapping(path = "{contactDetailsId}") // Change the method name to match the endpoint
+    public ContactDetails getContactDetail(@PathVariable("contactDetailsId") Long contactDetailsId) {
+        return contactService.getContactDetail(contactDetailsId).orElseThrow(
+                () -> new UnsupportedOperationException("There is no Contact with id " + contactDetailsId));
     }
 
     @PostMapping("/contactAdd")
@@ -49,7 +50,7 @@ public class ContactController {
         contactService.deleteContact(ContactDetailsId);
     }
 
-    @PutMapping("{ContactDetailsId}")
+    @PutMapping(path = "{ContactDetailsId}")
     public void updateContact(@PathVariable("ContactDetailsId") Long ContactDetailsId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email) {

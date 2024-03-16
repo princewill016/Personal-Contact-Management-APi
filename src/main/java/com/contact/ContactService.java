@@ -21,14 +21,17 @@ public class ContactService {
         return contactRepository.findAll();
     }
 
-    @SuppressWarnings("null")
     public Optional<ContactDetails> getContactDetail(Long contactDetailsId) {
-        boolean exists = contactRepository.existsById(contactDetailsId);
-        if (!exists) {
-            throw new UnsupportedOperationException("There is no Contact with id " + contactDetailsId);
-        }
         return contactRepository.findById(contactDetailsId);
     }
+
+    // public Optional<ContactDetails> getContactDetail(Long contactDetailsId) {
+    //     boolean exists = contactRepository.existsById(contactDetailsId);
+    //     if (!exists) {
+    //         throw new UnsupportedOperationException("There is no Contact with id " + contactDetailsId);
+    //     }
+    //     return contactRepository.findById(contactDetailsId);
+    // }
 
     public ContactDetails addContact(ContactDetails contactDetails) {
         Optional<ContactDetails> contactOptional = contactRepository.findByEmail(contactDetails.getEmail());
