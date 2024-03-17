@@ -28,18 +28,29 @@ public class ContactController {
         return contactService.getContactDetails();
     }
 
-    @GetMapping(path = "{contactDetailsId}") // Change the method name to match the endpoint
-    public ContactDetails getContactDetail(@PathVariable("contactDetailsId") Long contactDetailsId) {
-        return contactService.getContactDetail(contactDetailsId).orElseThrow(
-                () -> new UnsupportedOperationException("There is no Contact with id " + contactDetailsId));
+    // disabling find by id just so find by name will work. disable find by name and
+    // enable this to use it.
+    // @GetMapping(path = "{contactDetailsId}")
+    // public ContactDetails getContactDetail(@PathVariable("contactDetailsId") Long
+    // contactDetailsId) {
+    // return contactService.getContactDetail(contactDetailsId).orElseThrow(
+    // () -> new UnsupportedOperationException("There is no Contact with id " +
+    // contactDetailsId));
+    // }
+
+    @GetMapping(path = "{contactDetailsName}")
+    public ContactDetails getContactDetailByName(@PathVariable("contactDetailsName") String contactDetailsName) {
+        return contactService.getContactDetailByName(contactDetailsName).orElseThrow(
+                () -> new UnsupportedOperationException("There is no Contact as " + contactDetailsName
+                        + " please check the spelling and try again"));
     }
 
-    @PostMapping("/contactAdd")
+    @PostMapping("/addContact")
     public ContactDetails addContact(@RequestBody ContactDetails contactDetail) {
         return contactService.addContact(contactDetail);
     }
 
-    @PostMapping("/contactAdds")
+    @PostMapping("/addContacts")
     public List<ContactDetails> addContacts(@RequestBody List<ContactDetails> contactDetails) {
         contactService.addContacts(contactDetails);
         return contactDetails;

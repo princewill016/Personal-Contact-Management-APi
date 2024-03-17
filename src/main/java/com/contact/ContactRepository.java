@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContactRepository extends JpaRepository<ContactDetails, Long> {
     @SuppressWarnings("null")
-    Optional<ContactDetails> findById(Long contactDetailsId); 
-    Optional<ContactDetails> findByEmail(String email); 
+    Optional<ContactDetails> findById(Long contactDetailsId);
+
+    Optional<ContactDetails> findByName(String name);
+
+    Optional<ContactDetails> findByEmail(String email);
 }
