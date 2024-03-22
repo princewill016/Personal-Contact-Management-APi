@@ -35,5 +35,6 @@ public class ContactDetails {
         this.phone = phone;
         this.email = email;
         this.address = address;
+
     }
 }
