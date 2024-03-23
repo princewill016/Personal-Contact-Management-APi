@@ -1,5 +1,6 @@
 package com.SecurityConfig;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,21 +25,28 @@ import com.dao.ContactDao;
 @EnableWebSecurity
 public class SecurityConfig {
     private static final JwtAthFilter jwtAuthFilter = null;
+    @Autowired
     private ContactDao contactDao;
 
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
 
         http
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/**/auth/**")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
-                .sessionManagement(management -> management
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .authorizeRequests(requests -> {
+                    try {
+                        requests
+                                .requestMatchers("/**/auth/**").permitAll()
+                                .anyRequest()
+                                .authenticated()
+                                .and()
+                                .sessionManagement(management -> management
+                                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authenticationProvider(authenticationProvider())
+                                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
         return http.build();
 
     }

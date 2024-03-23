@@ -22,7 +22,7 @@ public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
     private final ContactDao contactDao;
-    private final JwtUtil jwtUtils;
+    private final JwtUtil jwtUtils; 
 
     @PostMapping("/authenticate")
     public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequest request) {
