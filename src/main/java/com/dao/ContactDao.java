@@ -22,8 +22,8 @@ public class ContactDao {
                     "Peter2011",
                     Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"))));
 
-    public UserDetails findUserByEmail(String email) {
-        return APPLICATION_USERS.stream().filter(u -> u.getUsername().equals(email)).findFirst()
+    public UserDetails findUserByUsername(String username) {
+        return APPLICATION_USERS.stream().filter(u -> u.getUsername().equals(username)).findFirst()
                 .orElseThrow(() -> new UsernameNotFoundException("user was not found"));
     }
 }

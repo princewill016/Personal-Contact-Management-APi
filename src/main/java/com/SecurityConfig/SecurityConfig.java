@@ -24,18 +24,23 @@ import com.dao.ContactDao;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private static final JwtAthFilter jwtAuthFilter = null;
+
+    @Autowired
+    private JwtAthFilter jwtAuthFilter;
+
     @Autowired
     private ContactDao contactDao;
 
-    public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests(requests -> {
                     try {
                         requests
-                                .requestMatchers("/**/auth/**").permitAll()
+                                .requestMatchers("/authenticate")
+                                .permitAll()
                                 .anyRequest()
                                 .authenticated()
                                 .and()
@@ -74,8 +79,8 @@ public class SecurityConfig {
     UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
-            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                return contactDao.findUserByEmail(email);
+            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                return contactDao.findUserByUsername(username);
             }
         };
     }
