@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping(path = "api/v1/contact")
-
 
 public class ContactController {
     @Autowired
@@ -28,9 +25,6 @@ public class ContactController {
         this.contactService = contactService;
     }
 
-    // add some logic to the get mapping to fetch only then first 100 data in the
-    // data base and when a user click next, it fetches the next 100 till all data
-    // in the database has been fetched for performance optimization
     @GetMapping()
     public List<ContactDetails> getContactDetails() {
         return contactService.getContactDetails();
