@@ -32,17 +32,14 @@ public class ContactController {
         return contactService.getContactDetails();
     }
 
-    // disabling find by id just so find by name will work. disable find by name and
-    // enable this to use it.
-    // @GetMapping(path = "{contactDetailsId}")
-    // public ContactDetails getContactDetail(@PathVariable("contactDetailsId") Long
-    // contactDetailsId) {
-    // return contactService.getContactDetail(contactDetailsId).orElseThrow(
-    // () -> new UnsupportedOperationException("There is no Contact with id " +
-    // contactDetailsId));
-    // }
+    @GetMapping(path = "{contactDetailsId}")
+    public ContactDetails getContactDetail(@PathVariable("contactDetailsId") Long contactDetailsId) {
+        return contactService.getContactDetail(contactDetailsId).orElseThrow(
+                () -> new UnsupportedOperationException("There is no Contact with id " +
+                        contactDetailsId));
+    }
 
-    @GetMapping(path = "{contactDetailsName}")
+    @GetMapping(path = "contactName/{contactDetailsName}")
     public ContactDetails getContactDetailByName(@PathVariable("contactDetailsName") String contactDetailsName) {
         return contactService.getContactDetailByName(contactDetailsName).orElseThrow(
                 () -> new UnsupportedOperationException("There is no Contact as " + contactDetailsName

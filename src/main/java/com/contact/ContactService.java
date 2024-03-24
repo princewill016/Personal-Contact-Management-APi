@@ -21,20 +21,15 @@ public class ContactService {
         return contactRepository.findAll();
     }
 
-    // disabling find by id just so find by name will work. disable find by name and
-    // enable this to use it.
-
-    // public Optional<ContactDetails> getContactDetail(Long contactDetailsId) {
-    // return contactRepository.findById(contactDetailsId);
-    // }
-    // public Optional<ContactDetails> getContactDetail(Long contactDetailsId) {
-    // boolean exists = contactRepository.existsById(contactDetailsId);
-    // if (!exists) {
-    // throw new UnsupportedOperationException("There is no Contact with id " +
-    // contactDetailsId);
-    // }
-    // return contactRepository.findById(contactDetailsId);
-    // }
+    @SuppressWarnings("null")
+    public Optional<ContactDetails> getContactDetail(Long contactDetailsId) {
+        boolean exists = contactRepository.existsById(contactDetailsId);
+        if (!exists) {
+            throw new UnsupportedOperationException("There is no Contact with id " +
+                    contactDetailsId);
+        }
+        return contactRepository.findById(contactDetailsId);
+    }
 
     public Optional<ContactDetails> getContactDetailByName(String contactDetailsName) {
         return contactRepository.findByName(contactDetailsName);
