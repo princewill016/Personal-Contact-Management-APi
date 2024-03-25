@@ -49,7 +49,7 @@ public class ContactService {
     public List<ContactDetails> addContacts(List<ContactDetails> contactDetails) {
 
         return contactRepository.saveAll(contactDetails);
-
+ 
     }
 
     @SuppressWarnings("null")
