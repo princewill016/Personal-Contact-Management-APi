@@ -3,7 +3,8 @@ package com.contact;
 import java.util.List;
 import java.util.Optional;
 import java.util.Objects;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,8 @@ public class ContactService {
     public ContactService(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(ContactService.class);
 
     public List<ContactDetails> getContactDetails() {
         return contactRepository.findAll();
@@ -49,7 +52,7 @@ public class ContactService {
     public List<ContactDetails> addContacts(List<ContactDetails> contactDetails) {
 
         return contactRepository.saveAll(contactDetails);
- 
+
     }
 
     @SuppressWarnings("null")
@@ -62,8 +65,13 @@ public class ContactService {
         contactRepository.deleteById(contactDetailsId);
     }
 
+    @SuppressWarnings("null")
     @Transactional
     public void updateContact(Long contactDetailsId, String name, String email) {
+        logger.info("Updating contact with ID: {}", contactDetailsId);
+
+        // Logging the parameters received
+        logger.debug("Received parameters: name={}, email={}", name, email);
         ContactDetails contact = contactRepository.findById(contactDetailsId)
                 .orElseThrow(() -> new IllegalStateException("Contact with id " + contactDetailsId + " not found"));
 
@@ -73,5 +81,7 @@ public class ContactService {
         if (email != null && !email.isEmpty() && !Objects.equals(contact.getEmail(), email)) {
             contact.setEmail(email);
         }
+        contactRepository.save(contact);
+        logger.info("Contact updated successfully");
     }
 }

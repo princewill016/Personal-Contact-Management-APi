@@ -1,7 +1,8 @@
 package com.contact;
 
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,8 @@ public class ContactController {
     public ContactController(ContactService contactService) {
         this.contactService = contactService;
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
 
     @GetMapping()
     public List<ContactDetails> getContactDetails() {
@@ -64,7 +67,10 @@ public class ContactController {
     public void updateContact(@PathVariable("ContactDetailsId") Long ContactDetailsId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email) {
+        logger.info("Updating contact with ID: {}", ContactDetailsId);
+        logger.debug("Received parameters: name={}, email={}", name, email);
         contactService.updateContact(ContactDetailsId, name, email);
+
     }
 
 }
