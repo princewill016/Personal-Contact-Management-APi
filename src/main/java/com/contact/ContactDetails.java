@@ -37,4 +37,5 @@ public class ContactDetails {
         this.address = address;
 
     }
+
 }

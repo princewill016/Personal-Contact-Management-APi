@@ -50,9 +50,7 @@ public class ContactService {
     @SuppressWarnings("null")
     @Transactional
     public List<ContactDetails> addContacts(List<ContactDetails> contactDetails) {
-
         return contactRepository.saveAll(contactDetails);
-
     }
 
     @SuppressWarnings("null")
@@ -69,8 +67,6 @@ public class ContactService {
     @Transactional
     public void updateContact(Long contactDetailsId, String name, String email) {
         logger.info("Updating contact with ID: {}", contactDetailsId);
-
-        // Logging the parameters received
         logger.debug("Received parameters: name={}, email={}", name, email);
         ContactDetails contact = contactRepository.findById(contactDetailsId)
                 .orElseThrow(() -> new IllegalStateException("Contact with id " + contactDetailsId + " not found"));
