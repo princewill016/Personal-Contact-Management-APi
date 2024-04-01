@@ -47,12 +47,12 @@ public class ContactController {
                         + " please check the spelling and try again"));
     }
 
-    @PostMapping("/addContact")
+    @PostMapping("/newContact")
     public ContactDetails addContact(@RequestBody ContactDetails contactDetail) {
         return contactService.addContact(contactDetail);
     }
 
-    @PostMapping("/addContacts")
+    @PostMapping("/newContacts")
     public List<ContactDetails> addContacts(@RequestBody List<ContactDetails> contactDetails) {
         contactService.addContacts(contactDetails);
         return contactDetails;
