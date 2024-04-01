@@ -9,10 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.DataAccessObject.ContactDao;
+import com.DataTransferObject.AuthenticationRequestDTO;
+import com.DataTransferObject.AuthenticationResponseDTO;
 import com.SecurityConfig.JwtUtil;
-import com.dao.ContactDao;
-import com.dto.AuthenticationRequest;
-import com.dto.AuthenticationResponse;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +30,8 @@ public class AuthenticationController {
     private JwtUtil jwtUtils;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> createAuthenticationToken(
-            @RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+    public ResponseEntity<AuthenticationResponseDTO> createAuthenticationToken(
+            @RequestBody AuthenticationRequestDTO authenticationRequest) throws Exception {
         try {
             authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(
@@ -45,6 +45,6 @@ public class AuthenticationController {
 
         final String jwt = jwtUtils.generateToken(user);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
     }
 }

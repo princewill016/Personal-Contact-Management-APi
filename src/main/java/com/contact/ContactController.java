@@ -46,7 +46,7 @@ public class ContactController {
                 () -> new UnsupportedOperationException("There is no Contact as " + contactDetailsName
                         + " please check the spelling and try again"));
     }
-
+ 
     @PostMapping("/newContact")
     public ContactDetails addContact(@RequestBody ContactDetails contactDetail) {
         return contactService.addContact(contactDetail);
