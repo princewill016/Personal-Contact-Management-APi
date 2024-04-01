@@ -1,8 +1,10 @@
-package com.contact;
+package com.ContactRepository;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.ContactModels.ContactDetails;
 
 @Repository
 public interface ContactRepository extends JpaRepository<ContactDetails, Long> {
