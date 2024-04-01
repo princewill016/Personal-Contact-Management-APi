@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ContactModels.ContactDetails;
+import com.ContactModel.ContactDetails;
 import com.ContactServices.ContactService;
 
 import org.springframework.web.bind.annotation.PutMapping;
@@ -49,7 +49,7 @@ public class ContactController {
                 () -> new UnsupportedOperationException("There is no Contact as " + contactDetailsName
                         + " please check the spelling and try again"));
     }
- 
+
     @PostMapping("/newContact")
     public ContactDetails addContact(@RequestBody ContactDetails contactDetail) {
         return contactService.addContact(contactDetail);
