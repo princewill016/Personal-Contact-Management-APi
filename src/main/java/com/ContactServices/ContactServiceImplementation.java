@@ -37,7 +37,7 @@ public class ContactServiceImplementation implements ContactService {
     }
 
     @Override
-    @SuppressWarnings("null")
+
     public Optional<ContactDetails> getContactDetail(Long contactDetailsId) {
         boolean exists = contactRepository.existsById(contactDetailsId);
         if (!exists) {
@@ -63,14 +63,14 @@ public class ContactServiceImplementation implements ContactService {
     }
 
     @Override
-    @SuppressWarnings("null")
+
     @Transactional
     public List<ContactDetails> addContacts(List<ContactDetails> contactDetails) {
         return contactRepository.saveAll(contactDetails);
     }
 
     @Override
-    @SuppressWarnings("null")
+
     public void deleteContact(Long contactDetailsId) {
 
         boolean exists = contactRepository.existsById(contactDetailsId);
@@ -81,7 +81,7 @@ public class ContactServiceImplementation implements ContactService {
     }
 
     @Override
-    @SuppressWarnings("null")
+
     @Transactional
     public void updateContact(Long contactDetailsId, String name, String email) {
         logger.info("Updating contact with ID: {}", contactDetailsId);
