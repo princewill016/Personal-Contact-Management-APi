@@ -3,6 +3,8 @@ package com.ContactServices;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ContactModel.ContactDetails;
@@ -11,6 +13,8 @@ import com.ContactModel.ContactDetails;
 public interface ContactService {
 
     List<ContactDetails> getContactDetails();
+
+    Page<ContactDetails> getContactDetails(Pageable pageable);
 
     Optional<ContactDetails> getContactDetail(Long contactDetailsId);
 

@@ -4,6 +4,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +37,18 @@ public class ContactController {
     private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
 
     @GetMapping()
-    public List<ContactDetails> getContactDetails() {
-        return contactService.getContactDetails();
+    public ResponseEntity<List<ContactDetails>> getContactDetails(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortOrder) {
+        
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortOrder), sortBy));
+        Page<ContactDetails> contacts = contactService.getContactDetails(pageable);
+        
+        return ResponseEntity.ok().body(contacts.getContent());
     }
+
 
     @GetMapping(path = "{contactDetailsId}")
     public ContactDetails getContactDetail(@PathVariable("contactDetailsId") Long contactDetailsId) {
