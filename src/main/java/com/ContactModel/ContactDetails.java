@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,9 +28,15 @@ public class ContactDetails {
     @SequenceGenerator(name = "Contact_sequence", sequenceName = "Contact_sequence", allocationSize = 1)
     private Long id;
 
+    @NotNull
+    @Size(min = 2, max = 50)
     private String name;
+
     private Long phone;
+
+    @Email
     private String email;
+
     private String address;
 
     public ContactDetails(String name, Long phone, String email, String address) {

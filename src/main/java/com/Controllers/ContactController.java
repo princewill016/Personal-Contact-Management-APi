@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ContactModel.ContactDetails;
 import com.ContactServices.ContactService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping(path = "api/v1/contact")
-
+@Validated
 public class ContactController {
     @Autowired
     private final ContactService contactService;
@@ -42,13 +45,12 @@ public class ContactController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "asc") String sortOrder) {
-        
+
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortOrder), sortBy));
         Page<ContactDetails> contacts = contactService.getContactDetails(pageable);
-        
+
         return ResponseEntity.ok().body(contacts.getContent());
     }
-
 
     @GetMapping(path = "{contactDetailsId}")
     public ContactDetails getContactDetail(@PathVariable("contactDetailsId") Long contactDetailsId) {
@@ -65,7 +67,7 @@ public class ContactController {
     }
 
     @PostMapping("/newContact")
-    public ContactDetails addContact(@RequestBody ContactDetails contactDetail) {
+    public ContactDetails addContact(@Valid @RequestBody ContactDetails contactDetail) {
         return contactService.addContact(contactDetail);
     }
 

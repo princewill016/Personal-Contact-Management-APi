@@ -26,7 +26,7 @@ public class JwtAthFilter extends OncePerRequestFilter {
     @Autowired
     private ContactDao contactDao;
 
-
+    @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
