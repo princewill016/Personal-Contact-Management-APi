@@ -58,6 +58,14 @@
             <optional>true</optional>
         </dependency>
 
+     <!-- Spring Boot Starter for sending emails -->
+ <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+    <version>3.2.4</version>
+</dependency>
+
+
         <!-- Spring Boot Starter Test for testing the application -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

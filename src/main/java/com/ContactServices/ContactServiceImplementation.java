@@ -19,9 +19,12 @@ import com.ContactRepository.ContactRepository;
 public class ContactServiceImplementation implements ContactService {
     @Autowired
     private final ContactRepository contactRepository;
+    @Autowired
+    private EmailService emailService;
 
-    public ContactServiceImplementation(ContactRepository contactRepository) {
+    public ContactServiceImplementation(ContactRepository contactRepository, EmailService emailService) {
         this.contactRepository = contactRepository;
+        this.emailService = emailService;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(ContactService.class);
@@ -58,6 +61,7 @@ public class ContactServiceImplementation implements ContactService {
         if (contactOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");
         } else {
+            emailService.sendEmail(contactDetails.getEmail(), "Registration Confirmation", "Welcome to our platform!");
             return contactRepository.save(contactDetails);
         }
     }
