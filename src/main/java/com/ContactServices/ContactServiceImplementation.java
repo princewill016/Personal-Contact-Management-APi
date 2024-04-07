@@ -99,6 +99,8 @@ public class ContactServiceImplementation implements ContactService {
         if (email != null && !email.isEmpty() && !Objects.equals(contact.getEmail(), email)) {
             contact.setEmail(email);
         }
+        emailService.sendEmail(contact.getEmail(), "Update successful", "You have successfully updated ur profile!");
+
         contactRepository.save(contact);
         logger.info("Contact updated successfully");
     }
