@@ -52,14 +52,14 @@ public class ContactController {
         return ResponseEntity.ok().body(contacts.getContent());
     }
 
-    @GetMapping(path = "{contactDetailsId}")
-    public ContactDetails getContactDetail(@PathVariable("contactDetailsId") Long contactDetailsId) {
-        return contactService.getContactDetail(contactDetailsId).orElseThrow(
+    @GetMapping(path = "{Id}")
+    public ContactDetails getContactDetail(@PathVariable("Id") Long Id) {
+        return contactService.getContactDetail(Id).orElseThrow(
                 () -> new UnsupportedOperationException("There is no Contact with id " +
-                        contactDetailsId));
+                        Id));
     }
 
-    @GetMapping(path = "contactName/{contactDetailsName}")
+    @GetMapping(path = "name/{contactDetailsName}")
     public ContactDetails getContactDetailByName(@PathVariable("contactDetailsName") String contactDetailsName) {
         return contactService.getContactDetailByName(contactDetailsName).orElseThrow(
                 () -> new UnsupportedOperationException("There is no Contact as " + contactDetailsName
@@ -77,18 +77,18 @@ public class ContactController {
         return contactDetails;
     }
 
-    @DeleteMapping(path = "{ContactDetailsId}")
-    public void deleteStudent(@PathVariable("ContactDetailsId") Long ContactDetailsId) {
-        contactService.deleteContact(ContactDetailsId);
+    @DeleteMapping(path = "{Id}")
+    public void deleteStudent(@PathVariable("Id") Long Id) {
+        contactService.deleteContact(Id);
     }
 
-    @PutMapping(path = "{ContactDetailsId}")
-    public void updateContact(@PathVariable("ContactDetailsId") Long ContactDetailsId,
+    @PutMapping(path = "{Id}")
+    public void updateContact(@PathVariable("Id") Long Id,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email) {
-        logger.info("Updating contact with ID: {}", ContactDetailsId);
+        logger.info("Updating contact with ID: {}", Id);
         logger.debug("Received parameters: name={}, email={}", name, email);
-        contactService.updateContact(ContactDetailsId, name, email);
+        contactService.updateContact(Id, name, email);
 
     }
 
