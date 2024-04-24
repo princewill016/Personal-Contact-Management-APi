@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -36,15 +37,23 @@ public class ContactDetails {
 
     @Email
     private String email;
-
+    private String filename;
+    private String fileType;
+    private String downloadURL;
     private String address;
+    @Lob
+    private byte[] file;
 
-    public ContactDetails(String name, Long phone, String email, String address) {
+    public ContactDetails(@NotNull @Size(min = 2, max = 50) String name, Long phone, @Email String email,
+            String filename, String fileType, String downloadURL, String address, byte[] file) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.filename = filename;
+        this.fileType = fileType;
+        this.downloadURL = downloadURL;
         this.address = address;
-
+        this.file = file;
     }
 
 }

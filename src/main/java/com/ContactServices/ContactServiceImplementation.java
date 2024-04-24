@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ContactModel.ContactDetails;
 import com.ContactRepository.ContactRepository;
@@ -103,5 +104,11 @@ public class ContactServiceImplementation implements ContactService {
 
         contactRepository.save(contact);
         logger.info("Contact updated successfully");
+    }
+
+    @Override
+    public void addFile(MultipartFile file, String entityId, String entityName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addFile'");
     }
 }
