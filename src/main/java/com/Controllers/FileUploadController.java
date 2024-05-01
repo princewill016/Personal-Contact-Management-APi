@@ -42,9 +42,11 @@ public class FileUploadController {
         }
         return ResponseEntity.status(HttpStatus.OK).body("File uploaded successfully");
     }
+
     private String getFileExtension(String filename) {
         return filename.substring(filename.lastIndexOf(".") + 1);
     }
+
     private boolean isSupportedFileExtension(String extension) {
         return SUPPORTED_FILE_EXTENSIONS.contains(extension.toLowerCase());
     }
