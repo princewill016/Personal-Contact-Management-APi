@@ -18,7 +18,7 @@ public class ApiDocConfig {
         return new OpenAPI()
                 .info(
                         new Info()
-                                .title("contacts")
+                                .title("Personal Contact Management API")
                                 .description("contacts")
                                 .version("1.0.0")
                                 .license(
