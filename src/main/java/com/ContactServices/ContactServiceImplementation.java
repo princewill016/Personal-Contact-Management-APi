@@ -30,11 +30,7 @@ public class ContactServiceImplementation implements ContactService {
 
     private static final Logger logger = LoggerFactory.getLogger(ContactService.class);
 
-    @Override
-    public List<ContactDetails> getContactDetails() {
-        return contactRepository.findAll();
-    }
-
+  
     @Override
     public Page<ContactDetails> getContactDetails(Pageable pageable) {
         return contactRepository.findAll(pageable);

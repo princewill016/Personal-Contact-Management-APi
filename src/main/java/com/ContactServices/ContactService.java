@@ -13,8 +13,6 @@ import com.ContactModel.ContactDetails;
 @Service
 public interface ContactService {
 
-    List<ContactDetails> getContactDetails();
-
     Page<ContactDetails> getContactDetails(Pageable pageable);
 
     Optional<ContactDetails> getContactDetail(Long contactDetailsId);
