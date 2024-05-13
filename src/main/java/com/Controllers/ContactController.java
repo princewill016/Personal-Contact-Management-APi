@@ -61,7 +61,7 @@ public class ContactController {
 
     @GetMapping(path = "name/{contactDetailsName}")
     public ContactDetails getContactDetailByName(@PathVariable("contactDetailsName") String contactDetailsName) {
-        return contactService.getContactDetailByName(contactDetailsName).orElseThrow(
+        return contactService.getContactDetailByName(contactDetailsName).orElseThrow( 
                 () -> new UnsupportedOperationException("There is no Contact as " + contactDetailsName
                         + " please check the spelling and try again"));
     }

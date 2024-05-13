@@ -36,6 +36,7 @@ public class ContactDetails {
     @Email
     private String email;
     private String address;
+
     public ContactDetails(@NotNull @Size(min = 2, max = 50) String name, Long phone, @Email String email,
             String address) {
         this.name = name;
@@ -43,6 +44,5 @@ public class ContactDetails {
         this.email = email;
         this.address = address;
     }
-  
 
 }

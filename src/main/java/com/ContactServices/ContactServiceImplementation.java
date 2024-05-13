@@ -57,7 +57,7 @@ public class ContactServiceImplementation implements ContactService {
         Optional<ContactDetails> contactOptional = contactRepository.findByEmail(contactDetails.getEmail());
         if (contactOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");
-        } else {
+        } else { 
             emailService.sendEmail(contactDetails.getEmail(), "Registration Confirmation", "Welcome to our platform!");
             return contactRepository.save(contactDetails);
         }
