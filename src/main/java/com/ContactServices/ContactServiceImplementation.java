@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.ContactModel.ContactDetails;
 import com.ContactRepository.ContactRepository;
@@ -30,7 +29,6 @@ public class ContactServiceImplementation implements ContactService {
 
     private static final Logger logger = LoggerFactory.getLogger(ContactService.class);
 
-  
     @Override
     public Page<ContactDetails> getContactDetails(Pageable pageable) {
         return contactRepository.findAll(pageable);
@@ -57,13 +55,13 @@ public class ContactServiceImplementation implements ContactService {
         Optional<ContactDetails> contactOptional = contactRepository.findByEmail(contactDetails.getEmail());
         if (contactOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");
-        } else { 
+        } else {
             emailService.sendEmail(contactDetails.getEmail(), "Registration Confirmation", "Welcome to our platform!");
             return contactRepository.save(contactDetails);
         }
     }
 
-    @Override 
+    @Override
 
     @Transactional
     public List<ContactDetails> addContacts(List<ContactDetails> contactDetails) {
@@ -102,9 +100,4 @@ public class ContactServiceImplementation implements ContactService {
         logger.info("Contact updated successfully");
     }
 
-    @Override
-    public void addFile(MultipartFile file, String entityId, String entityName) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addFile'");
-    }
 }

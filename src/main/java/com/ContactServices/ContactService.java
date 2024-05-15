@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import com.ContactModel.ContactDetails;
 
@@ -26,7 +26,5 @@ public interface ContactService {
     void deleteContact(Long contactDetailsId);
 
     void updateContact(Long contactDetailsId, String name, String email);
-
-    void addFile(MultipartFile file, String entityId, String entityName);
 
 }
