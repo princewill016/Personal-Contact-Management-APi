@@ -60,5 +60,5 @@ Spring Security
 JWT
 Swagger
 
----Contributors
+---Contributor
 Peter David.
