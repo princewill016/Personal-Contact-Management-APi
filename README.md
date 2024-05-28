@@ -22,6 +22,7 @@ Spring Boot: Backend framework for building robust and scalable RESTful APIs.
 ORM & Database
 Hibernate: Object-Relational Mapping (ORM) framework for interacting with the MySQL database.
 Security
+Redis:For caching to reduce the time it takes to fetch already loaded data.
 Spring Security: Security framework for securing API endpoints and implementing JWT authentication.
 
 ---API Documentation
@@ -56,6 +57,7 @@ Generate JWT token upon user authentication and include it in the Authorization 
 Spring Boot
 Hibernate
 MySQL
+Redis
 Spring Security
 JWT
 Swagger
