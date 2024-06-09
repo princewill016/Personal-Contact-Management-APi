@@ -25,8 +25,6 @@ Security
 Redis:For caching to reduce the time it takes to fetch already loaded data.
 Spring Security: Security framework for securing API endpoints and implementing JWT authentication.
 
----API Documentation
-Swagger: API documentation tool for generating interactive API documentation.
 
 ---Getting Started
 Clone the repository.
