@@ -38,7 +38,7 @@ public class AuthenticationController {
                             authenticationRequest.getPassword()));
 
         } catch (BadCredentialsException e) {
-            throw new Exception("incorrect username or password", e);
+
         }
         final UserDetails user = contactDao.findUserByUsername(authenticationRequest.getUsername());
 
