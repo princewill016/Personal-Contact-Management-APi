@@ -4,6 +4,8 @@ import manager.DataAccessObject.ContactDao;
 import manager.DataTransferObject.AuthenticationRequestDTO;
 import manager.DataTransferObject.AuthenticationResponseDTO;
 import manager.SecurityConfig.JwtUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,18 +29,20 @@ public class AuthenticationController {
     private ContactDao contactDao;
     @Autowired
     private JwtUtil jwtUtils;
-
+    private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponseDTO> createAuthenticationToken(
+
             @RequestBody AuthenticationRequestDTO authenticationRequest) throws Exception {
         try {
+            logger.info("trying to authenticate user");
             authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(
                             authenticationRequest.getUsername(),
                             authenticationRequest.getPassword()));
-
-        } catch (BadCredentialsException e) {
-
+            logger.info("user authenticated successfully");
+        } catch (BadCredentialsException ignored) {
+            logger.info("cannot authenticate user");
         }
         final UserDetails user = contactDao.findUserByUsername(authenticationRequest.getUsername());
 

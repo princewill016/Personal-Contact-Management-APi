@@ -53,11 +53,13 @@ public class ContactServiceImplementation implements ContactService {
     @Override
     @CacheEvict(value = "contact", allEntries = true)
     public ContactDetails addContact(ContactDetails contactDetails) {
+        String cont = contactDetails.getName();
         Optional<ContactDetails> contactOptional = contactRepository.findByEmail(contactDetails.getEmail());
         if (contactOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");
         } else {
             emailService.sendEmail(contactDetails.getEmail(), "Registration Confirmation", "Welcome to our platform!");
+            logger.info("new contact saved!! contact name is: " + cont );
             return contactRepository.save(contactDetails);
         }
     }
@@ -65,7 +67,8 @@ public class ContactServiceImplementation implements ContactService {
     @Override
     @CacheEvict(value = "contacts", allEntries = true)
     @Transactional
-    public void addContacts(List<ContactDetails> contactDetails) {
+    public void addContacts(List<ContactDetails> contactDetails)
+    {
         contactRepository.saveAll(contactDetails);
     }
 

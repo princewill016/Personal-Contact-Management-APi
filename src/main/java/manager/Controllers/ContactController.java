@@ -69,17 +69,22 @@ public class ContactController {
 
     @PostMapping("/newContact")
     public ContactDetails addContact(@Valid @RequestBody ContactDetails contactDetail) {
+        logger.info("method called for adding one contact");
         return contactService.addContact(contactDetail);
     }
 
     @PostMapping("/newContacts")
     public void  addContacts(@RequestBody List<ContactDetails> contactDetails) {
+        logger.info("adding contacts");
         contactService.addContacts(contactDetails);
+        logger.info("all contacts added successfully");
     }
 
     @DeleteMapping(path = "{Id}")
     public void deleteStudent(@PathVariable("Id") Long Id) {
+        logger.info("ready to delete {}", Id);
         contactService.deleteContact(Id);
+        logger.info("id deleted {}", Id);
     }
 
     @PutMapping(path = "{Id}")
