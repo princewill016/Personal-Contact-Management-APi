@@ -42,7 +42,8 @@ public class AuthenticationController {
                             authenticationRequest.getPassword()));
             logger.info("user authenticated successfully");
         } catch (BadCredentialsException ignored) {
-            logger.info("cannot authenticate user");
+            logger.error("cannot authenticate user");
+            logger.warn("you should enter a valid credential");
         }
         final UserDetails user = contactDao.findUserByUsername(authenticationRequest.getUsername());
 
