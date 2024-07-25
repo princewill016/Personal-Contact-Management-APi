@@ -15,6 +15,17 @@
 <!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
 <!--    </appender>-->
 
+    <!-- Set logger levels to ERROR to suppress INFO, WARN, DEBUG, and TRACE level at startup/shutdown  -->
+    <logger name="org.springframework" level="ERROR" />
+    <logger name="org.springframework.boot" level="ERROR" />
+    <logger name="org.springframework.web" level="ERROR" />
+    <logger name="org.apache.catalina" level="ERROR" />
+    <logger name="org.hibernate" level="ERROR" />
+    <logger name="org.apache.coyote.http11.Http11NioProtocol" level="ERROR" />
+    <logger name="com.zaxxer.hikari.HikariDataSource" level="ERROR" />
+    <logger name="com.zaxxer.hikari.pool.HikariPool" level="ERROR" />
+
+
     <root level="info">
         <appender-ref ref="LOGSTASH" />
 <!--        <appender-ref ref="ROLLING_FILE" />-->
