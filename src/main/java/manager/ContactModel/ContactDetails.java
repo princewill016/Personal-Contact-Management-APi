@@ -47,10 +47,10 @@ public class ContactDetails implements Serializable {
     private LocalDateTime registrationTime = LocalDateTime.now();
 
 
-    @JsonProperty("Registration-time")
-    public String getFormattedDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH-mm-ss -- dd-MM-yyyy");
-        return registrationTime.format(formatter);
-    }
+//    @JsonProperty("Registration-time")
+//    public String getFormattedDateTime() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH-mm-ss -- dd-MM-yyyy");
+//        return registrationTime.format(formatter);
+//    }
 
 }

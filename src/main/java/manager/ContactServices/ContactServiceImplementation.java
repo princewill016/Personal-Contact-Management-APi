@@ -56,9 +56,10 @@ public class ContactServiceImplementation implements ContactService {
         String cont = contactDetails.getName();
         Optional<ContactDetails> contactOptional = contactRepository.findByEmail(contactDetails.getEmail());
         if (contactOptional.isPresent()) {
+            logger.error("failed to register user due to email taken");
             throw new IllegalStateException("Email already exists");
         } else {
-            emailService.sendEmail(contactDetails.getEmail(), "Registration Confirmation", "Welcome to our platform!");
+//            emailService.sendEmail(contactDetails.getEmail(), "Registration Confirmation", "Welcome to our platform!");
             logger.info("new contact saved!! contact name is: " + cont );
             return contactRepository.save(contactDetails);
         }
