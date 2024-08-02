@@ -50,7 +50,8 @@ public class SecurityConfig {
                                         "/webjars/**",
                                         "/swagger-ui.html",
                                         "/swagger-ui/**",
-                                      "/actuator",
+                                      "/actuator/*",
+                                      "/actuator/metrics",
                                       "/actuator/prometheus",
                                       "/actuator/**")
                                 .permitAll()

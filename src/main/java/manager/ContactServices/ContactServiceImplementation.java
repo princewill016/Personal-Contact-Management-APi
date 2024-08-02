@@ -74,7 +74,6 @@ public class ContactServiceImplementation implements ContactService {
     }
 
     @Override
-
     @CacheEvict(value = "contact", key = "#contactDetailsId")
     public void deleteContact(Long contactDetailsId) {
         boolean exists = contactRepository.existsById(contactDetailsId);
