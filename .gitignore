@@ -6,7 +6,7 @@ target/
 application.properties
 .properties
 resources
-
+docker-compose.yml
 ### STS ###
 .apt_generated
 .classpath
