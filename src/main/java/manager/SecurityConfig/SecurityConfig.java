@@ -58,7 +58,7 @@ public class SecurityConfig {
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
-                                .and()
+                                .and().sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                               .oauth2Login(Customizer.withDefaults())
                               .formLogin(Customizer.withDefaults()
                               )
