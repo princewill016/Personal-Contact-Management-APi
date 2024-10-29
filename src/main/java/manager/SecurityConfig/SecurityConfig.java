@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -58,8 +59,9 @@ public class SecurityConfig {
                                 .anyRequest()
                                 .authenticated()
                                 .and()
-                                .sessionManagement(management -> management
-                                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                              .oauth2Login(Customizer.withDefaults())
+                              .formLogin(Customizer.withDefaults()
+                              )
                                 .authenticationProvider(authenticationProvider())
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
                     } catch (Exception e) {
