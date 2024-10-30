@@ -20,6 +20,15 @@
     </properties>
     <dependencies>
 
+
+        <!-- this is for env file  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+
         <!-- Actuator for monitoring and managing the application -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,8 +48,6 @@
             <artifactId>spring-security-core</artifactId>
             <version>6.3.3</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
